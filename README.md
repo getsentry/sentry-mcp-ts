@@ -31,7 +31,7 @@ To use this MCP server with Claude, add the following configuration to your Clau
     "mcpServers": {
         "sentry": {
             "command": "npx",
-            "args": ["ts-node", "/Users/<your-user-directory>/mcp-sentry-ts/index.ts"],
+            "args": ["ts-node", "/Users/<your-user-directory>/sentry-mcp-ts/index.ts"],
             "env": {
                 "SENTRY_AUTH": "<YOUR_AUTH_TOKEN>"
             }
