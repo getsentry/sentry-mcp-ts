@@ -18,9 +18,7 @@ A Model Context Protocol (MCP) server for interacting with Sentry. This MCP serv
 
 ## Using this within an IDE 
 
-This MCP has been verified to work against Codeium Windsurf.
-
-Cursor is currently having issues with its MCP implementation; and this tool is not yet fully functional.
+This MCP has been verified to work against Cursor, Codeium Windsurf, and Claude Desktop.
 
 ## Using with Claude
 
@@ -150,14 +148,4 @@ npx ts-node index.ts
 
 ## Authentication
 
-This tool requires a Sentry authentication token with appropriate permissions to access the Sentry API. You can generate a token in your Sentry account settings under "API Keys".
-
-## Error Handling
-
-The server includes comprehensive error handling for:
-- Missing authentication token
-- API request failures
-- Invalid parameters
-- Network errors
-
-All errors are logged to the console for debugging.
+This tool requires a Sentry authentication token with appropriate permissions to access the Sentry API. You can generate a token in your Sentry account settings under Settings -> User Settings -> Auth Tokens.
