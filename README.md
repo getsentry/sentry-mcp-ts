@@ -31,6 +31,7 @@ To use this MCP server with Claude, add the following configuration to your Clau
             "command": "npx",
             "args": ["ts-node", "/Users/<your-user-directory>/sentry-mcp-ts/index.ts"],
             "env": {
+                "SENTRY_BASE_URL": "<YOUR_BASE_URL>",
                 "SENTRY_AUTH": "<YOUR_AUTH_TOKEN>"
             }
         }
@@ -39,6 +40,7 @@ To use this MCP server with Claude, add the following configuration to your Clau
 ```
 
 * Update with your directory path in the `args` field.
+* Replace `<YOUR_BASE_URL>` with the base URL of your Sentry instance. If not specified, the default value is https://sentry.io.
 * Replace `<YOUR_AUTH_TOKEN>` with your Sentry authentication token.
 
 ## Available Tools

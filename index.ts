@@ -18,6 +18,7 @@ import {
 } from "./types";
 
 const SENTRY_AUTH = process.env.SENTRY_AUTH;
+const SENTRY_BASE_URL = process.env.SENTRY_BASE_URL || "https://sentry.io";
 if (!SENTRY_AUTH) {
   console.error("Error: SENTRY_AUTH environment variable is required");
   process.exit(1);
@@ -56,7 +57,7 @@ server.tool(
 
     try {
       // Add breadcrumb for API call      
-      const apiUrl: string = `https://sentry.io/api/0/organizations/${organization_slug}/projects/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/organizations/${organization_slug}/projects/`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
@@ -212,7 +213,7 @@ server.tool(
       console.error("DEBUG: Format:", format);
 
       // Construct the URL for the Sentry API
-      const apiUrl: string = `https://sentry.io/api/0/organizations/${organization_slug}/shortids/${short_id}/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/organizations/${organization_slug}/shortids/${short_id}/`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
@@ -381,7 +382,7 @@ server.tool(
       console.error("DEBUG: Issue ID:", issue_id_or_url);
 
       // Construct the URL for the Sentry API
-      const apiUrl: string = `https://sentry.io/api/0/organizations/${organizationSlug}/eventids/${event_id}/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/organizations/${organizationSlug}/eventids/${event_id}/`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
@@ -680,7 +681,7 @@ server.tool(
       console.error("DEBUG: Format:", format);
 
       // Construct the URL for the Sentry API
-      const apiUrl: string = `https://sentry.io/api/0/projects/${organization_slug}/${project_slug}/events/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/projects/${organization_slug}/${project_slug}/events/`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
@@ -932,7 +933,7 @@ server.tool(
       console.error("DEBUG: Format:", format);
 
       // Construct the URL for the Sentry API to create a project
-      const apiUrl: string = `https://sentry.io/api/0/teams/${organization_slug}/${team_slug}/projects/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/teams/${organization_slug}/${team_slug}/projects/`;
 
       // Prepare the request body
       const requestBody: any = {
@@ -977,7 +978,7 @@ server.tool(
       );
 
       // Now fetch the client keys for the newly created project
-      const keysApiUrl: string = `https://sentry.io/api/0/projects/${organization_slug}/${projectData.slug}/keys/`;
+      const keysApiUrl: string = `${SENTRY_BASE_URL}/api/0/projects/${organization_slug}/${projectData.slug}/keys/`;
 
       // Make the API request to get client keys
       const keysResponse = await fetch(keysApiUrl, {
@@ -1208,7 +1209,7 @@ server.tool(
       console.error("DEBUG: Format:", format);
 
       // Construct the URL for the Sentry API
-      const apiUrl: string = `https://sentry.io/api/0/projects/${organization_slug}/${project_slug}/issues/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/projects/${organization_slug}/${project_slug}/issues/`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
@@ -1435,7 +1436,7 @@ server.tool(
       console.error("DEBUG: Format:", format);
 
       // Construct the URL for the Sentry API
-      const apiUrl: string = `https://sentry.io/api/0/organizations/${organization_slug}/issues/${issue_id}/events/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/organizations/${organization_slug}/issues/${issue_id}/events/`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
@@ -1714,7 +1715,7 @@ server.tool(
       console.error("DEBUG: Issue ID:", issue_id_or_url);
 
       // Construct the URL for the Sentry API
-      const apiUrl: string = `https://sentry.io/api/0/organizations/${organizationSlug}/issues/${issue_id_or_url}/`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/organizations/${organizationSlug}/issues/${issue_id_or_url}/`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
@@ -2168,7 +2169,7 @@ server.tool(
 
       // Build the URL with query parameters
       const queryString = queryParams.toString();
-      const url = `https://sentry.io/api/0/organizations/${organization_slug}/replays/${
+      const url = `${SENTRY_BASE_URL}/api/0/organizations/${organization_slug}/replays/${
         queryString ? `?${queryString}` : ""
       }`;
 
@@ -2600,7 +2601,7 @@ server.tool(
       console.error('DEBUG: Environment:', environment);
 
       // Step 1: Create the project
-      const createProjectUrl = `https://sentry.io/api/0/teams/${organization_slug}/${team_slug}/projects/`;
+      const createProjectUrl = `${SENTRY_BASE_URL}/api/0/teams/${organization_slug}/${team_slug}/projects/`;
       
       const createProjectResponse = await fetch(createProjectUrl, {
         method: 'POST',
@@ -2629,7 +2630,7 @@ server.tool(
       console.error('DEBUG: Project created:', JSON.stringify(projectData, null, 2));
 
       // Step 2: Get the client keys (DSN)
-      const clientKeysUrl = `https://sentry.io/api/0/projects/${organization_slug}/${projectData.slug}/keys/`;
+      const clientKeysUrl = `${SENTRY_BASE_URL}/api/0/projects/${organization_slug}/${projectData.slug}/keys/`;
       
       const clientKeysResponse = await fetch(clientKeysUrl, {
         method: 'GET',
@@ -2700,7 +2701,7 @@ server.tool(
         output += `1. Choose the appropriate SDK for your platform and follow the installation instructions above.\n`;
         output += `2. Configure additional options as needed for your specific use case.\n`;
         output += `3. Test your integration by triggering a test event.\n`;
-        output += `4. Visit your [Sentry dashboard](https://sentry.io/organizations/${organization_slug}/issues/) to view and manage your errors.\n`;
+        output += `4. Visit your [Sentry dashboard](${SENTRY_BASE_URL}/organizations/${organization_slug}/issues/) to view and manage your errors.\n`;
       } else {
         // Plain text format
         output = `Sentry Project Setup: ${setupResponse.projectName}\n\n`;
@@ -2721,7 +2722,7 @@ server.tool(
         output += `1. Choose the appropriate SDK for your platform and follow the installation instructions above.\n`;
         output += `2. Configure additional options as needed for your specific use case.\n`;
         output += `3. Test your integration by triggering a test event.\n`;
-        output += `4. Visit your Sentry dashboard to view and manage your errors: https://sentry.io/organizations/${organization_slug}/issues/\n`;
+        output += `4. Visit your Sentry dashboard to view and manage your errors: ${SENTRY_BASE_URL}/organizations/${organization_slug}/issues/\n`;
       }
 
       return {
@@ -2800,7 +2801,7 @@ server.tool(
         : `stack.filename:"*${file_identifier}"`;
             
       // Construct the URL for the Sentry API
-      const apiUrl: string = `https://sentry.io/api/0/projects/${organization_slug}/${project_slug}/issues/?query=${encodeURIComponent(query)}`;
+      const apiUrl: string = `${SENTRY_BASE_URL}/api/0/projects/${organization_slug}/${project_slug}/issues/?query=${encodeURIComponent(query)}`;
 
       // Make the API request
       const response = await fetch(apiUrl, {
