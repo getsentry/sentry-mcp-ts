@@ -1,3 +1,5 @@
+**Note** - This has largely been superceded by the Sentry [Remote-MCP Server](https://github.com/getsentry/sentry-mcp) which supports a lot more capabilities (auth, better tooling, etc...). This one exists for educational purposes as a standalone MCP server; but in all likelihood you'll want to use the remote. You can see it live at https://mcp.sentry.dev
+
 # Sentry MCP Server
 
 A Model Context Protocol (MCP) server for interacting with Sentry. This MCP server provides tools to interact with the Sentry API, allowing AI assistants to retrieve and analyze error data, manage projects, and monitor application performance.
